@@ -6,11 +6,13 @@ import ArtistView from './components/ArtistView'
 import Gallery from './components/Gallery'
 import SearchBar from './components/SearchBar'
 import { DataContext } from './context/DataContext'
+import {  SearchContext } from './context/SearchContext'
 
 function App() {
   let [searchTerm, setSearchTerm] = useState('')
   let [data, setData] = useState([])
   let [message, setMessage] = useState('Search for Music!')
+  // let searchInput = useRef('')
 
   useEffect(() => {
     if (searchTerm) {
@@ -40,7 +42,12 @@ function App() {
         <Routes>
           <Route exact path="/" element={
             <div>
-              <SearchBar handleSearch={handleSearch} />
+              {/* <SearchContext.Provider value={{
+                term: searchInput,
+                handleSearch: handleSearch
+              }}> */}
+                <SearchBar handleSearch={handleSearch} />
+              {/* </SearchContext.Provider> */}
               <DataContext.Provider value={data} />
                 <Gallery data={data} />
               <DataContext.Provider />
